@@ -1,6 +1,6 @@
 const myLibrary = [];
 
-const imageNotFound = "../assets/book-cover-default.png"
+const imageNotFound = "assets/book-cover-default.png"
 
 function Book(title, author, coverURL = imageNotFound, wasRead = false) {
     this.title = title;
