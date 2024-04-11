@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+@mixin flex {
+    display: flex;
+}
+
+@mixin flex-col {
+    @include flex;
+    flex-direction: column;
+}
+
+@mixin flex-aic {
+    @include flex;
+    align-items: center;
+}
+
+@mixin flex-center {
+    @include flex-aic;
+    justify-content: center;
+}
+
+$gray: #5E5E5E;
+$lightgray: #DADCE0;
+$teal: #1de9b6;
+$red: #ff1744;
+$card-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+$button-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+$modal-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body,
+main {
+    height: 100vh;
+}
+
+header,
+main {
+    padding: 15px;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: white;
+    box-shadow: $card-shadow;
+
+    @include flex-aic;
+    gap: 8px;
+
+    h1 {
+        font-weight: 300;
+    }
+}
+
+.grid-container {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, 120px);
+
+    .card {
+        height: 260px;
+        background-color: white;
+        border-radius: 5px;
+        border-bottom: 5px solid $red;
+        outline: 1px solid $lightgray;
+        color: $gray;
+
+        @include flex-col;
+        justify-content: end;
+
+        .cover {
+            background-color: #F2F2F2;
+            border-radius: 5px 5px 0 0;
+            flex: 1;
+            overflow: hidden;
+
+            @include flex-center;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+
+        }
+
+        .info {
+            padding: 8px;
+            height: 4lh;
+
+            .title,
+            .author {
+                max-width: 13ch;
+                overflow: hidden;
+            }
+
+            .title {
+                max-height: 2lh;
+                color: black;
+            }
+
+            .author {
+                height: 1lh;
+            }
+        }
+
+        &.was-read {
+            border-color: $teal;
+        }
+
+        transition: all .2s ease-in-out;
+
+        &:hover {
+            outline: 2px solid cornflowerblue;
+            box-shadow: $button-shadow;
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+    }
+}
+
+button.add-books {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    font-size: 24px;
+    box-shadow: $button-shadow;
+    color: white;
+    background-color: cornflowerblue;
+    border: 1px solid cornflowerblue;
+
+    &:hover {
+        background-color: white;
+        color: cornflowerblue;
+        cursor: pointer;
+    }
+}
+
+dialog {
+    border: 1px solid $lightgray;
+    padding: 32px 16px;
+    border-radius: 5px;
+    box-shadow: $modal-shadow;
+    margin: 0 auto;
+    position: absolute;
+    top: 30vh;
+
+    &:hover,
+    &:focus {
+        outline: none;
+    }
+
+    form {
+        @include flex-col;
+
+        p,
+        label,
+        input {
+            margin-bottom: 5px;
+        }
+
+        label {
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: $gray;
+            display: block;
+
+            &[for="was-read"]{
+                display: inline;
+            }
+        }
+
+
+        input {
+            padding: 8px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid $lightgray;
+
+            &[type="text"] {
+                display: block;
+            }
+
+            &[type="checkbox"] {
+                margin-bottom: 0;
+                vertical-align: middle;
+            }
+
+            &:invalid {
+                border-color: $red;
+            }
+
+            &:focus {
+                border-color: cornflowerblue;
+                outline: none;
+            }
+        }
+
+
+
+    }
+
+    button {
+        background-color: cornflowerblue;
+        color: white;
+        font-weight: 700;
+        font-size: 1rem;
+        border-radius: 5px;
+        padding: 8px;
+        border: 1px solid cornflowerblue;
+
+        &:hover {
+            cursor: pointer;
+            background-color: white;
+            color: cornflowerblue;
+        }
+
+        &.close-modal {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            border-radius: 50%;
+            border: 1px solid $gray;
+            width: 30px;
+            height: 30px;
+            font-size: 1.5rem;
+            font-weight: 300;
+            background-color: cornflowerblue;
+            color: white;
+            border: 1px solid cornflowerblue;
+
+            @include flex-center;
+
+            &:hover {
+                border: 1px solid cornflowerblue;
+                background-color: white;
+                color: cornflowerblue;
+                cursor: pointer;
+            }
+        }
+
+        &::backdrop {
+            background-color: $gray;
+            opacity: 0.5;
+        }
+    }
+}

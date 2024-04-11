@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" contenta="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../dist/css/main.css">
+    <title>Library App</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Odin Books</h1>
+        </header>
+        <main>
+            <div class="grid-container"></div>
+            <button class="add-books" type="button">+</button>
+        </main>
+        <dialog>
+            <button 
+            class="close-modal" 
+            type="button" 
+            formmethod="dialog"
+            >×</button>
+            <form method="dialog">
+                <p>
+                    <label for="title">Title</label>
+                    <input autofocus 
+                    id="title" 
+                    type="text" 
+                    placeholder="The Hobbit" minlength="3" 
+                    required>
+                </p>
+                <p>
+                    <label for="author">Author</label>
+                    <input id="author" 
+                    type="text" 
+                    placeholder="J.R.R. Tolkien" 
+                    required>
+                </p>
+                <p>
+                    <label for="was-read">Have you read it?</label>
+                    <input type="checkbox" name="was-read" id="was-read">
+                </p>
+                <button 
+                type="submit"
+                formmethod="dialog"
+                >Submit</button>
+            </form>
+        </dialog>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
