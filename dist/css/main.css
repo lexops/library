@@ -1,0 +1,225 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body,
+main {
+  height: 100vh;
+}
+
+header,
+main {
+  padding: 15px;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+header h1 {
+  font-weight: 300;
+}
+
+.grid-container {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, 120px);
+}
+.grid-container .card {
+  height: 260px;
+  background-color: white;
+  border-radius: 5px;
+  border-bottom: 5px solid #ff1744;
+  outline: 1px solid #DADCE0;
+  color: #5E5E5E;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  transition: all 0.2s ease-in-out;
+}
+.grid-container .card .cover {
+  background-color: #F2F2F2;
+  border-radius: 5px 5px 0 0;
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.grid-container .card .cover img {
+  width: 100%;
+  height: 100%;
+}
+.grid-container .card .info {
+  padding: 8px;
+  height: 4lh;
+}
+.grid-container .card .info .title,
+.grid-container .card .info .author {
+  max-width: 13ch;
+  overflow: hidden;
+}
+.grid-container .card .info .title {
+  max-height: 2lh;
+  color: black;
+}
+.grid-container .card .info .author {
+  height: 1lh;
+}
+.grid-container .card.was-read {
+  border-color: #1de9b6;
+}
+.grid-container .card:hover {
+  outline: 2px solid cornflowerblue;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  cursor: pointer;
+}
+.grid-container .card button.deleteBook {
+  display: none;
+}
+.grid-container .card:hover button.deleteBook {
+  display: initial;
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  border: none;
+  border-radius: 50%;
+  background-color: cornflowerblue;
+  fill: white;
+}
+.grid-container .card:hover button.deleteBook:hover {
+  background-color: #ff1744;
+  fill: white;
+  cursor: inherit;
+}
+
+button.add-books {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  font-size: 24px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  color: white;
+  background-color: cornflowerblue;
+  border: 1px solid cornflowerblue;
+}
+button.add-books:hover {
+  background-color: white;
+  color: cornflowerblue;
+  cursor: pointer;
+}
+
+dialog {
+  border: 1px solid #DADCE0;
+  padding: 32px 16px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  margin: 0 auto;
+  position: absolute;
+  top: 30vh;
+}
+dialog:hover, dialog:focus {
+  outline: none;
+}
+dialog form {
+  display: flex;
+  flex-direction: column;
+}
+dialog form p,
+dialog form label,
+dialog form input {
+  margin-bottom: 5px;
+}
+dialog form label {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #5E5E5E;
+  display: block;
+}
+dialog form label[for=was-read] {
+  display: inline;
+}
+dialog form input {
+  padding: 8px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #DADCE0;
+}
+dialog form input[type=text] {
+  display: block;
+}
+dialog form input[type=checkbox] {
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+dialog form input:invalid {
+  border-color: #ff1744;
+}
+dialog form input:focus {
+  border-color: cornflowerblue;
+  outline: none;
+}
+dialog button {
+  background-color: cornflowerblue;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 8px;
+  border: 1px solid cornflowerblue;
+}
+dialog button:hover {
+  cursor: pointer;
+  background-color: white;
+  color: cornflowerblue;
+}
+dialog button.close-modal {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border-radius: 50%;
+  border: 1px solid #5E5E5E;
+  width: 30px;
+  height: 30px;
+  font-size: 1.5rem;
+  font-weight: 300;
+  background-color: cornflowerblue;
+  color: white;
+  border: 1px solid cornflowerblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+dialog button.close-modal:hover {
+  border: 1px solid cornflowerblue;
+  background-color: white;
+  color: cornflowerblue;
+  cursor: pointer;
+}
+dialog button::backdrop {
+  background-color: #5E5E5E;
+  opacity: 0.5;
+}
+
+/*# sourceMappingURL=main.css.map */
