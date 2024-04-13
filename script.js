@@ -54,9 +54,10 @@ const grid = document.querySelector(".grid-container");
 // display books
 
 function displayBooks(books) {
-    books.forEach(book => {
+    books.forEach((book, index) => {
         const newCard = document.createElement("div");
         newCard.classList.add("card");
+        newCard.setAttribute("data-index", index);
         if (book.wasRead) newCard.classList.add("was-read");
 
         newCard.innerHTML = `
@@ -66,7 +67,10 @@ function displayBooks(books) {
         <div class="info">
             <p class="title">${book.title}</p>
             <p class="author">${book.author}</p>
-        </div>`
+        </div>
+        <button type="button" class="deleteBook">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>delete book?</title><path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z" /></svg>
+        </button>`
 
         grid.appendChild(newCard)
     })
@@ -113,3 +117,15 @@ submitDialogBtn.addEventListener("click", (event) => {
 });
 
 // Delete book buttons
+
+grid.addEventListener("click", (e) => {
+    const deleteBookBtn = e.target.closest('.deleteBook');
+    
+    if (deleteBookBtn) {
+        console.log(deleteBookBtn)
+        const card = deleteBookBtn.closest('.card')
+        const cardIndex = card.attributes["data-index"]
+        myLibrary.splice(cardIndex, 1)
+        grid.removeChild(card)
+    }
+})

@@ -72,6 +72,7 @@ header {
         outline: 1px solid $lightgray;
         color: $gray;
 
+        position: relative;
         @include flex-col;
         justify-content: end;
 
@@ -120,10 +121,39 @@ header {
             outline: 2px solid cornflowerblue;
             box-shadow: $button-shadow;
             cursor: pointer;
-            transform: scale(1.1);
         }
+
+        button.deleteBook {
+            display: none;
+        }
+
+        &:hover {
+
+            button.deleteBook {
+                display: initial;
+                position: absolute;
+                right: 3px;
+                top: 3px;
+                width: 30px;
+                height: 30px;
+                padding: 5px;
+                border: none;
+                border-radius: 50%;
+                background-color: cornflowerblue;
+                fill: white;
+
+                &:hover {
+                    background-color: $red;
+                    fill: white;
+                    cursor: inherit;
+                }
+            }
+
+        }
+       
     }
 }
+
 
 button.add-books {
     position: fixed;
@@ -227,7 +257,7 @@ dialog {
             background-color: white;
             color: cornflowerblue;
         }
-
+        
         &.close-modal {
             position: absolute;
             top: 8px;
