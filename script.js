@@ -45,7 +45,6 @@ mockBooks.forEach(book => {
     addBookToLibrary(newBook);
 });
 
-console.log(myLibrary)
 
 // Modify DOM here
 
@@ -68,6 +67,9 @@ function displayBooks(books) {
             <p class="title">${book.title}</p>
             <p class="author">${book.author}</p>
         </div>
+        <button type="button" class="markAsRead">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>mark as read?</title><path d="M0.41,13.41L6,19L7.41,17.58L1.83,12M22.24,5.58L11.66,16.17L7.5,12L6.07,13.41L11.66,19L23.66,7M18,7L16.59,5.58L10.24,11.93L11.66,13.34L18,7Z" /></svg>
+        </button>
         <button type="button" class="deleteBook">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>delete book?</title><path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z" /></svg>
         </button>`
@@ -91,7 +93,6 @@ addBooksBtn.addEventListener("click", () => {
 
 closeModalBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    console.log(e)
     title.value = "";
     author.value = "";
     dialog.close();
@@ -103,11 +104,11 @@ submitDialogBtn.addEventListener("click", (event) => {
     let title = document.querySelector("input#title");
     let author = document.querySelector("input#author");
     let wasRead = document.querySelector("input[type='checkbox']");
+    let coverURL = document.querySelector("input#cover-url");
 
-    const newBook = new Book(title.value, author.value, imageNotFound, wasRead.checked);
+    const newBook = new Book(title.value, author.value, coverURL.value, wasRead.checked);
     addBookToLibrary(newBook);
 
-    console.log(myLibrary);
     displayBooks([newBook]);
 
     title.value = "";
@@ -122,10 +123,21 @@ grid.addEventListener("click", (e) => {
     const deleteBookBtn = e.target.closest('.deleteBook');
     
     if (deleteBookBtn) {
-        console.log(deleteBookBtn)
         const card = deleteBookBtn.closest('.card')
         const cardIndex = card.attributes["data-index"]
         myLibrary.splice(cardIndex, 1)
         grid.removeChild(card)
+    }
+})
+
+grid.addEventListener("click", (e) => {
+    const markAsRead = e.target.closest('.markAsRead');
+    
+    if (markAsRead) {
+        const card = markAsRead.closest('.card')
+        const cardIndex = card.attributes["data-index"].value
+        const book = myLibrary[cardIndex]
+        book.wasRead = true;
+        card.classList.toggle("was-read")
     }
 })

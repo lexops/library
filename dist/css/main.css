@@ -85,13 +85,14 @@ header h1 {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   cursor: pointer;
 }
-.grid-container .card button.deleteBook {
+.grid-container .card button.deleteBook,
+.grid-container .card button.markAsRead {
   display: none;
 }
-.grid-container .card:hover button.deleteBook {
+.grid-container .card:hover button.deleteBook,
+.grid-container .card:hover button.markAsRead {
   display: initial;
   position: absolute;
-  right: 3px;
   top: 3px;
   width: 30px;
   height: 30px;
@@ -101,8 +102,19 @@ header h1 {
   background-color: cornflowerblue;
   fill: white;
 }
+.grid-container .card:hover button.deleteBook {
+  left: 3px;
+}
 .grid-container .card:hover button.deleteBook:hover {
   background-color: #ff1744;
+  fill: white;
+  cursor: inherit;
+}
+.grid-container .card:hover button.markAsRead {
+  right: 3px;
+}
+.grid-container .card:hover button.markAsRead:hover {
+  background-color: #1de9b6;
   fill: white;
   cursor: inherit;
 }

@@ -123,16 +123,17 @@ header {
             cursor: pointer;
         }
 
-        button.deleteBook {
+        button.deleteBook,
+        button.markAsRead {
             display: none;
         }
 
         &:hover {
 
-            button.deleteBook {
+            button.deleteBook,
+            button.markAsRead {
                 display: initial;
                 position: absolute;
-                right: 3px;
                 top: 3px;
                 width: 30px;
                 height: 30px;
@@ -141,9 +142,23 @@ header {
                 border-radius: 50%;
                 background-color: cornflowerblue;
                 fill: white;
-
+            }
+            
+            button.deleteBook {
+                left: 3px;
+                
                 &:hover {
                     background-color: $red;
+                    fill: white;
+                    cursor: inherit;
+                }
+            }
+
+            button.markAsRead {
+                right: 3px;
+                
+                &:hover {
+                    background-color: $teal;
                     fill: white;
                     cursor: inherit;
                 }
