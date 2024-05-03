@@ -2,11 +2,13 @@ const myLibrary = [];
 
 const imageNotFound = "assets/book-cover-default.png"
 
-function Book(title, author, coverURL = imageNotFound, wasRead = false) {
-    this.title = title;
-    this.author = author;
-    this.coverURL = coverURL;
-    this.wasRead = wasRead;
+class Book{
+    constructor(title, author, coverURL = imageNotFound, wasRead = false)  {
+        this.title = title;
+        this.author = author;
+        this.coverURL = coverURL;
+        this.wasRead = wasRead;
+    }
 }
 
 function addBookToLibrary(book) {
@@ -15,33 +17,39 @@ function addBookToLibrary(book) {
 
 const mockBooks = [
     {
-        "title": "The Great Gatsby",
-        "author": "F. Scott Fitzgerald",
+        "title": "Think Like a Programmer: An Introduction to Creative Problem Solving",
+        "author": "V. Anton Spraul",
+        "coverURL": "https://m.media-amazon.com/images/I/81vuUsOPM2L._SY342_.jpg"
     },
     {
-        "title": "To Kill a Mockingbird",
-        "author": "Harper Lee",
+        "title": "Eloquent Javascript: A Modern Introduction to Programming",
+        "author": "Marijn Haverbeke",
+        "coverURL": "https://m.media-amazon.com/images/I/41VvIauMuuL._SY445_SX342_.jpg"
     },
     {
-        "title": "1984",
-        "author": "George Orwell",
+        "title": "You don't know JS",
+        "author": "Kyle Simpson",
+        "coverURL": "https://m.media-amazon.com/images/I/71mKvD89oEL._SL1500_.jpg"
     },
     {
-        "title": "The Catcher in the Rye",
-        "author": "J.D. Salinger",
+        "title": "The Principles of Object-Oriented Javascript",
+        "author": "Nicholas C. Zakas",
+        "coverURL": "https://m.media-amazon.com/images/I/81JOSnsABSL._SL1500_.jpg"
     },
     {
-        "title": "Pride and Prejudice",
-        "author": "Jane Austen",
+        "title": "Practical Object-Oriented Design, An Agile Primer Using Ruby",
+        "author": "Sandi Metz",
+        "coverURL": "https://images.squarespace-cdn.com/content/v1/5527cdbae4b0ee7b897c2111/1530279450483-K5BJ5TZGMYSWYA3QQA63/POODR_2e_cover_low_res.jpg?format=500w"
     },
     {
-        "title": "The Hobbit",
-        "author": "J.R.R. Tolkien",
-    }
+        "title": "A Common-Sense Guide to Data Structures and Algorithms: Level Up Your Core Programming Skills",
+        "author": "Jay Wengrow",
+        "coverURL": "https://pragprog.com/titles/jwdsal2/a-common-sense-guide-to-data-structures-and-algorithms-second-edition/jwdsal2-250.jpg"
+    },
 ];
 
 mockBooks.forEach(book => {
-    const newBook = new Book(book.title, book.author);
+    const newBook = new Book(book.title, book.author, book.coverURL);
     addBookToLibrary(newBook);
 });
 
@@ -121,7 +129,7 @@ submitDialogBtn.addEventListener("click", (event) => {
 
 grid.addEventListener("click", (e) => {
     const deleteBookBtn = e.target.closest('.deleteBook');
-    
+
     if (deleteBookBtn) {
         const card = deleteBookBtn.closest('.card')
         const cardIndex = card.attributes["data-index"]
@@ -132,7 +140,7 @@ grid.addEventListener("click", (e) => {
 
 grid.addEventListener("click", (e) => {
     const markAsRead = e.target.closest('.markAsRead');
-    
+
     if (markAsRead) {
         const card = markAsRead.closest('.card')
         const cardIndex = card.attributes["data-index"].value
